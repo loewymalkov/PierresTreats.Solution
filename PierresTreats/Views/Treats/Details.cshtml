@@ -1,20 +1,31 @@
 @model PierresTreats.Models.Treat
 
-<h2>Edit</h2>
+<h2>Treat Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
 
-<h4>Edit treat: @Html.DisplayFor(model => model.Description)</h4>
 
-@using (Html.BeginForm())
+@if(@Model.Flavors.Count == 0)
 {
-    @Html.HiddenFor(model => model.TreatId)
-
-    @Html.LabelFor(model => model.Description)
-    @Html.EditorFor(model => model.Description)<br>
-
-    @Html.Label("Select flavor")
-    @Html.DropDownList("FlavorId")<br>
-
-    <input type="submit" value="Save" />
+  <p>This treat does not have any flavors</p>
+}
+else
+{
+  <h4>Flavors in this treat:</h4>
+  <ul>
+  @foreach(var join in Model.Flavors)
+  {
+    <li>@join.Flavor.Name</li>
+    @using (Html.BeginForm("DeleteFlavor", "Treats"))
+    {
+      @Html.Hidden("joinId", @join.FlavorTreatId)
+      <input type="submit" value="Delete"/>
+    }
+  }
+  </ul>
 }
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Add a Flavor", "AddFlavor", new { id = Model.TreatId })</p>
