@@ -1,8 +1,10 @@
 # PIERRESTREATS
 
+Web page to add treats and flavors to a database. 
+
 ## USE
 
-
+A web page that allows a user to create an account and add/store treats and flavors. App can keep track of multiple treats, multiple flavors and multiple associations between them, i.e. a 'caramel' treat can have the flavors 'sweet' and 'salty'. Built for Epicodus C# track, project built to learn user authentication and authorization with a web application. 
 
 ## SET-UP
 
